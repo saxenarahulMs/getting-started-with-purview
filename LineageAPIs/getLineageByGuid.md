@@ -23,263 +23,6 @@ This setting applies for Microsoft custom implementation
 
 **Recommended to set this always true, All the lineage requests mentioned in this article are made with forceNewApi=true**
 
-## direction
-
-| Type | default value |
-|------|---------------|
-| Enum | BOTH         |
-
-The direction of the lineage. It can be either INPUT, OUTPUT, or BOTH.
-
-The "INPUT" lineage direction means we are tracing the data backwards looking at what contributes to the final dataset.
-
-### Examples for direction
-Output of lineageAPI for a process having input dataset and output dataset
-
-### Example with direction = BOTH
-
-<details>
-  <summary>direction = BOTH</summary>
-
-```json
-{
-	"baseEntityGuid": "43766955-b6ab-457b-9811-c09181a2d7d3",
-	"lineageDirection": "BOTH",
-	"lineageDepth": 3,
-	"lineageWidth": 10,
-	"childrenCount": -1,
-	"guidEntityMap": {
-		"58db83ef-87e3-4168-bdfe-a4f6f6f60000": {
-			"typeName": "azure_sql_table",
-			"attributes": {
-				"modifiedTime": 0,
-				"createTime": 0,
-				"qualifiedName": "mssql://yourmssql.database.windows.net/db/schema/SourceTable",
-				"name": "SourceTable",
-				"principalId": 0
-			},
-			"lastModifiedTS": "1",
-			"guid": "58db83ef-87e3-4168-bdfe-a4f6f6f60000",
-			"status": "ACTIVE",
-			"displayText": "SourceTable",
-			"classificationNames": [],
-			"meaningNames": [],
-			"meanings": [],
-			"isIncomplete": false,
-			"labels": [],
-			"isIndexed": true
-		},
-		"43766955-b6ab-457b-9811-c09181a2d7d3": {
-			"typeName": "Process",
-			"attributes": {
-				"qualifiedName": "GeneralCopyProcess",
-				"name": "GeneralCopyProcess"
-			},
-			"lastModifiedTS": "1",
-			"guid": "43766955-b6ab-457b-9811-c09181a2d7d3",
-			"status": "ACTIVE",
-			"displayText": "GeneralCopyProcess",
-			"classificationNames": [],
-			"meaningNames": [],
-			"meanings": [],
-			"isIncomplete": false,
-			"labels": [],
-			"isIndexed": true
-		},
-		"960c9d98-fbb3-492c-a12c-52f6f6f60000": {
-			"typeName": "azure_sql_table",
-			"attributes": {
-				"modifiedTime": 0,
-				"createTime": 0,
-				"qualifiedName": "mssql://yourmssql.database.windows.net/db/schema/TargetTable",
-				"name": "TargetTable",
-				"principalId": 0
-			},
-			"lastModifiedTS": "1",
-			"guid": "960c9d98-fbb3-492c-a12c-52f6f6f60000",
-			"status": "ACTIVE",
-			"displayText": "TargetTable",
-			"classificationNames": [],
-			"meaningNames": [],
-			"meanings": [],
-			"isIncomplete": false,
-			"labels": [],
-			"isIndexed": true
-		}
-	},
-	"includeParent": false,
-	"relations": [
-		{
-			"fromEntityId": "58db83ef-87e3-4168-bdfe-a4f6f6f60000",
-			"toEntityId": "43766955-b6ab-457b-9811-c09181a2d7d3",
-			"relationshipId": "fc9e1ec0-cfeb-4cd9-8e1a-0e6d9c3e846a"
-		},
-		{
-			"fromEntityId": "43766955-b6ab-457b-9811-c09181a2d7d3",
-			"toEntityId": "960c9d98-fbb3-492c-a12c-52f6f6f60000",
-			"relationshipId": "e3adeceb-d8fb-424f-9b95-e14cda70b7de"
-		}
-	],
-	"parentRelations": [],
-	"widthCounts": {
-		"INPUT": {
-			"58db83ef-87e3-4168-bdfe-a4f6f6f60000": 0,
-			"43766955-b6ab-457b-9811-c09181a2d7d3": 1
-		},
-		"OUTPUT": {
-			"43766955-b6ab-457b-9811-c09181a2d7d3": 1,
-			"960c9d98-fbb3-492c-a12c-52f6f6f60000": 0
-		}
-	}
-}
-```
-
-</details>
-
-### Example with direction = INPUT
-
-<details>
-    <summary>direction = INPUT</summary>
-
-```json
-{
-	"baseEntityGuid": "43766955-b6ab-457b-9811-c09181a2d7d3",
-	"lineageDirection": "INPUT",
-	"lineageDepth": 3,
-	"lineageWidth": 10,
-	"childrenCount": -1,
-	"guidEntityMap": {
-		"58db83ef-87e3-4168-bdfe-a4f6f6f60000": {
-			"typeName": "azure_sql_table",
-			"attributes": {
-				"modifiedTime": 0,
-				"createTime": 0,
-				"qualifiedName": "mssql://yourmssql.database.windows.net/db/schema/SourceTable",
-				"name": "SourceTable",
-				"principalId": 0
-			},
-			"lastModifiedTS": "1",
-			"guid": "58db83ef-87e3-4168-bdfe-a4f6f6f60000",
-			"status": "ACTIVE",
-			"displayText": "SourceTable",
-			"classificationNames": [],
-			"meaningNames": [],
-			"meanings": [],
-			"isIncomplete": false,
-			"labels": [],
-			"isIndexed": true
-		},
-		"43766955-b6ab-457b-9811-c09181a2d7d3": {
-			"typeName": "Process",
-			"attributes": {
-				"qualifiedName": "GeneralCopyProcess",
-				"name": "GeneralCopyProcess"
-			},
-			"lastModifiedTS": "1",
-			"guid": "43766955-b6ab-457b-9811-c09181a2d7d3",
-			"status": "ACTIVE",
-			"displayText": "GeneralCopyProcess",
-			"classificationNames": [],
-			"meaningNames": [],
-			"meanings": [],
-			"isIncomplete": false,
-			"labels": [],
-			"isIndexed": true
-		}
-	},
-	"includeParent": false,
-	"relations": [
-		{
-			"fromEntityId": "58db83ef-87e3-4168-bdfe-a4f6f6f60000",
-			"toEntityId": "43766955-b6ab-457b-9811-c09181a2d7d3",
-			"relationshipId": "fc9e1ec0-cfeb-4cd9-8e1a-0e6d9c3e846a"
-		}
-	],
-	"parentRelations": [],
-	"widthCounts": {
-		"INPUT": {
-			"58db83ef-87e3-4168-bdfe-a4f6f6f60000": 0,
-			"43766955-b6ab-457b-9811-c09181a2d7d3": 1
-		}
-	}
-}
-```
-
-</details>
-
-### Example with direction = OUTPUT
-
-<details>
-    <summary>direction = OUTPUT </summary>
-
-```json
-{
-  "baseEntityGuid": "43766955-b6ab-457b-9811-c09181a2d7d3",
-  "lineageDirection": "OUTPUT",
-  "lineageDepth": 3,
-  "lineageWidth": 10,
-  "childrenCount": -1,
-  "guidEntityMap": {
-    "43766955-b6ab-457b-9811-c09181a2d7d3": {
-      "typeName": "Process",
-      "attributes": {
-        "qualifiedName": "GeneralCopyProcess",
-        "name": "GeneralCopyProcess"
-      },
-      "lastModifiedTS": "1",
-      "guid": "43766955-b6ab-457b-9811-c09181a2d7d3",
-      "status": "ACTIVE",
-      "displayText": "GeneralCopyProcess",
-      "classificationNames": [],
-      "meaningNames": [],
-      "meanings": [],
-      "isIncomplete": false,
-      "labels": [],
-      "isIndexed": true
-    },
-    "960c9d98-fbb3-492c-a12c-52f6f6f60000": {
-      "typeName": "azure_sql_table",
-      "attributes": {
-        "modifiedTime": 0,
-        "createTime": 0,
-        "qualifiedName": "mssql://yourmssql.database.windows.net/db/schema/TargetTable",
-        "name": "TargetTable",
-        "principalId": 0
-      },
-      "lastModifiedTS": "1",
-      "guid": "960c9d98-fbb3-492c-a12c-52f6f6f60000",
-      "status": "ACTIVE",
-      "displayText": "TargetTable",
-      "classificationNames": [],
-      "meaningNames": [],
-      "meanings": [],
-      "isIncomplete": false,
-      "labels": [],
-      "isIndexed": true
-    }
-  },
-  "includeParent": false,
-  "relations": [
-    {
-      "fromEntityId": "43766955-b6ab-457b-9811-c09181a2d7d3",
-      "toEntityId": "960c9d98-fbb3-492c-a12c-52f6f6f60000",
-      "relationshipId": "e3adeceb-d8fb-424f-9b95-e14cda70b7de"
-    }
-  ],
-  "parentRelations": [],
-  "widthCounts": {
-    "OUTPUT": {
-      "43766955-b6ab-457b-9811-c09181a2d7d3": 1,
-      "960c9d98-fbb3-492c-a12c-52f6f6f60000": 0
-    }
-  }
-}
-```
-
-</details>
-
-Note: For more examples you can also refer to the [Example of includeParent = true](#example-of-includeparent--true)
-
 ## depth
 
 | Type | default value | maxDepthSupported                |
@@ -347,7 +90,13 @@ When the lineage query parameter "includeParent" is true, the API response will 
 
 The lineage query will fetch all parents of a specific DataSet/Process recursively
 
-### Example of includeParent = true
+The response will contain non-empty parentRelations array if includeParent=true and the entity for which lineage is 
+queried has parent entities
+
+### Examples are covered in [Dissecting lineage output](#dissecting-lineage-output) and [direction](#direction) section
+
+## Dissecting lineage output
+
 
 **Let's first prepare all the entities for lineage**
 
@@ -732,8 +481,6 @@ Payload to create relationship between source table and process
 
 ![img_3.png](images/img_3.png)
 
-<a id="id1"></a>
-
 <details>
 
 <summary>
@@ -741,41 +488,217 @@ Details of all assets created above
 </summary>
 
 1. Product Table (Target Azure SQL Table)
-    * guid: "6a488c4a-be00-4bb7-abe0-a6f6f6f60000"
-    * Type: "azure_sql_table"
-    * Fully qualified name (FQN): "mssql://.../AdventureWorksLT/SalesLT/Product"
-    * This is the main table receiving inputs.
-   
+   * guid: "6a488c4a-be00-4bb7-abe0-a6f6f6f60000"
+   * Type: "azure_sql_table"
+   * Fully qualified name (FQN): "mssql://.../AdventureWorksLT/SalesLT/Product"
+   * This is the main table receiving inputs.
+
 2. rdbms_table (Upstream Source)
-    * guid: "792c4c90-29d0-4540-a72b-a337ae6fa5c8"
-    * Type: "rdbms_table"
-    * FQN: "rdbms://table-1118ce87-4322-4241-a0ba-1b76c2685f74"
-    * This is an upstream table that feeds data into a process
+   * guid: "792c4c90-29d0-4540-a72b-a337ae6fa5c8"
+   * Type: "rdbms_table"
+   * FQN: "rdbms://table-1118ce87-4322-4241-a0ba-1b76c2685f74"
+   * This is an upstream table that feeds data into a process
 
 3.  Process (Data Processing Step)
-    * guid: "fbd2760a-880c-4bd1-b1aa-5387c80f1b30"
-    * Type: "Process"
-    * FQN: "Process_1118ce87-4322-4241-a0ba-1b76c2685f74"
-    * Represents a data transformation or ETL process
+   * guid: "fbd2760a-880c-4bd1-b1aa-5387c80f1b30"
+   * Type: "Process"
+   * FQN: "Process_1118ce87-4322-4241-a0ba-1b76c2685f74"
+   * Represents a data transformation or ETL process
 4. SalesLT Schema
-    * guid: "cd9cbfcb-6b3d-494c-a2c4-d135c26026f5"
-    * Type: "azure_sql_schema"
-    * FQN: "mssql://.../AdventureWorksLT/SalesLT"
-    * This is the schema that owns the "Product" table
+   * guid: "cd9cbfcb-6b3d-494c-a2c4-d135c26026f5"
+   * Type: "azure_sql_schema"
+   * FQN: "mssql://.../AdventureWorksLT/SalesLT"
+   * This is the schema that owns the "Product" table
 5. AdventureWorksLT Database
-    * guid: "a6fe2f6b-90c5-4fb8-9da7-23c7c398416d"
-    * Type: "azure_sql_db"
-    * FQN: "mssql://.../AdventureWorksLT"
-    * This is the database that owns the "SalesLT" schema
+   * guid: "a6fe2f6b-90c5-4fb8-9da7-23c7c398416d"
+   * Type: "azure_sql_db"
+   * FQN: "mssql://.../AdventureWorksLT"
+   * This is the database that owns the "SalesLT" schema
 6. Column in product Table
-    * guid: "6a488c4a-be00-4bb7-abe0-a6f6f6f60001"
-    * Type: "azure_sql_column"
-    * FQN: "mssql://.../Product#ProductCategoryID1118ce87-4322-4241-a0ba-1b76c2685f74"
+   * guid: "6a488c4a-be00-4bb7-abe0-a6f6f6f60001"
+   * Type: "azure_sql_column"
+   * FQN: "mssql://.../Product#ProductCategoryID1118ce87-4322-4241-a0ba-1b76c2685f74"
 7. SourceDB
    * guid: "cdba0d81-5e78-48aa-944d-5e67c764712d"
    * Type: "rdbms_db"
    * FQN: "rdbms://db-1118ce87-4322-4241-a0ba-1b76c2685f74"
 </details>
+
+<details>
+<summary>
+call getLineageAPI on Product table with direction=BOTH and includeParent=true
+</summary>
+
+```json
+{
+	"baseEntityGuid": "6a488c4a-be00-4bb7-abe0-a6f6f6f60000",
+	"lineageDirection": "BOTH",
+	"lineageDepth": 3,
+	"lineageWidth": 10,
+	"childrenCount": -1,
+	"guidEntityMap": {
+		"cd9cbfcb-6b3d-494c-a2c4-d135c26026f5": {
+			"typeName": "azure_sql_schema",
+			"attributes": {
+				"qualifiedName": "mssql://1118ce87-4322-4241-a0ba-1b76c2685f74.database.windows.net/AdventureWorksLT/SalesLT",
+				"schemaId": 0,
+				"name": "SalesLT"
+			},
+			"lastModifiedTS": "1",
+			"guid": "cd9cbfcb-6b3d-494c-a2c4-d135c26026f5",
+			"status": "ACTIVE",
+			"displayText": "SalesLT",
+			"classificationNames": [],
+			"meaningNames": [],
+			"meanings": [],
+			"isIncomplete": false,
+			"labels": [],
+			"isIndexed": true
+		},
+		"6a488c4a-be00-4bb7-abe0-a6f6f6f60000": {
+			"typeName": "azure_sql_table",
+			"attributes": {
+				"modifiedTime": 0,
+				"createTime": 0,
+				"qualifiedName": "mssql://1118ce87-4322-4241-a0ba-1b76c2685f74.database.windows.net/AdventureWorksLT/SalesLT/Product",
+				"name": "Product",
+				"principalId": 0
+			},
+			"lastModifiedTS": "1",
+			"guid": "6a488c4a-be00-4bb7-abe0-a6f6f6f60000",
+			"status": "ACTIVE",
+			"displayText": "Product",
+			"classificationNames": [],
+			"meaningNames": [],
+			"meanings": [],
+			"isIncomplete": false,
+			"labels": [],
+			"isIndexed": true
+		},
+		"fbd2760a-880c-4bd1-b1aa-5387c80f1b30": {
+			"typeName": "Process",
+			"attributes": {
+				"qualifiedName": "Process_1118ce87-4322-4241-a0ba-1b76c2685f74",
+				"name": "process"
+			},
+			"lastModifiedTS": "1",
+			"guid": "fbd2760a-880c-4bd1-b1aa-5387c80f1b30",
+			"status": "ACTIVE",
+			"displayText": "process",
+			"classificationNames": [],
+			"meaningNames": [],
+			"meanings": [],
+			"isIncomplete": false,
+			"labels": [],
+			"isIndexed": true
+		},
+		"792c4c90-29d0-4540-a72b-a337ae6fa5c8": {
+			"typeName": "rdbms_table",
+			"attributes": {
+				"createTime": 0,
+				"qualifiedName": "rdbms://table-1118ce87-4322-4241-a0ba-1b76c2685f74",
+				"name": "table"
+			},
+			"lastModifiedTS": "1",
+			"guid": "792c4c90-29d0-4540-a72b-a337ae6fa5c8",
+			"status": "ACTIVE",
+			"displayText": "table",
+			"classificationNames": [],
+			"meaningNames": [],
+			"meanings": [],
+			"isIncomplete": false,
+			"labels": [],
+			"isIndexed": true
+		},
+		"a6fe2f6b-90c5-4fb8-9da7-23c7c398416d": {
+			"typeName": "azure_sql_db",
+			"attributes": {
+				"createTime": 0,
+				"qualifiedName": "mssql://1118ce87-4322-4241-a0ba-1b76c2685f74.database.windows.net/AdventureWorksLT",
+				"compatibilityLevel": 0,
+				"name": "AdventureWorksLT"
+			},
+			"lastModifiedTS": "1",
+			"guid": "a6fe2f6b-90c5-4fb8-9da7-23c7c398416d",
+			"status": "ACTIVE",
+			"displayText": "AdventureWorksLT",
+			"classificationNames": [],
+			"meaningNames": [],
+			"meanings": [],
+			"isIncomplete": false,
+			"labels": [],
+			"isIndexed": true
+		}
+	},
+	"includeParent": true,
+	"relations": [
+		{
+			"fromEntityId": "792c4c90-29d0-4540-a72b-a337ae6fa5c8",
+			"toEntityId": "fbd2760a-880c-4bd1-b1aa-5387c80f1b30",
+			"relationshipId": "44489d80-25d1-43b4-9c91-9512c61dd55d"
+		},
+		{
+			"fromEntityId": "fbd2760a-880c-4bd1-b1aa-5387c80f1b30",
+			"toEntityId": "6a488c4a-be00-4bb7-abe0-a6f6f6f60000",
+			"relationshipId": "61ac7129-16e3-4f41-b923-dac92101fcbd"
+		}
+	],
+	"parentRelations": [
+		{
+			"childEntityId": "cd9cbfcb-6b3d-494c-a2c4-d135c26026f5",
+			"parentEntityId": "a6fe2f6b-90c5-4fb8-9da7-23c7c398416d",
+			"relationshipId": "60db6ae3-e24f-4d56-b6af-84693aaaa7bf"
+		},
+		{
+			"childEntityId": "6a488c4a-be00-4bb7-abe0-a6f6f6f60000",
+			"parentEntityId": "cd9cbfcb-6b3d-494c-a2c4-d135c26026f5",
+			"relationshipId": "a12a495c-71c9-4a7f-bf7b-2542076fee10"
+		}
+	],
+	"widthCounts": {
+		"OUTPUT": {
+			"6a488c4a-be00-4bb7-abe0-a6f6f6f60000": 0
+		},
+		"INPUT": {
+			"6a488c4a-be00-4bb7-abe0-a6f6f6f60000": 1,
+			"fbd2760a-880c-4bd1-b1aa-5387c80f1b30": 1,
+			"792c4c90-29d0-4540-a72b-a337ae6fa5c8": 0
+		}
+	}
+}
+```
+
+</details>
+
+1. "relations" array in output contains information of data flow
+   * The first element of array shows data moved from table (rdbms_table) to process
+   * The second element of array shows data moved from process to Product (azure_sql_table)
+2. "parentRelations" array in output contains information of parent child relations b/w entities
+   * This is only present when query param includeParent=true
+   * This does not represent data flow rather represent how entities involved in lineage are structured
+   * The first element of array shows AdventureWorksLT (azure_sql_db) is parent of SalesLT (azure_sql_schema)
+   * The second element of array shows SalesLT (azure_sql_schema) is parent of Product (azure_sql_table)
+3. WidthCounts INPUT
+   * Represents the number of upstream dependencies (how many entities contribute to a given entity)
+   * Product (azure_sql_table) has 1 input (the process entity)
+   * Process has 1 input (the rdbms_table entity)
+   * rdbms_table has 0 input (it does not depend on any other entity
+4. WidthCounts OUTPUT
+   * Represents the number of downstream dependencies (how many entities are affected by a given entity)
+   * Product (azure_sql_table) has 0 output meaning no other entity depends on it
+5. guidEntityMap
+   * This gives the details of all entities involved in lineage
+
+
+## direction
+
+| Type | default value |
+|------|---------------|
+| Enum | BOTH         |
+
+The direction of the lineage. It can be either INPUT, OUTPUT, or BOTH.
+
+### Examples
 
 Let's retrieve the Product table along with its parent schema and database and examine various directions
 
@@ -922,6 +845,7 @@ API response with direction=INPUT and includeParent=true
 </details>
 
 * Here, "Product" (azure_sql_table) is being derived from another process, which in turn is getting data from rdbms_table.
+* The "INPUT" lineage direction means we are tracing the data backwards looking at what contributes to the final dataset.
 
 <details>
 
@@ -1020,6 +944,8 @@ API response with direction=OUTPUT and includeParent=true
 </details>
 
 * In the lineage response, the relations array is empty for the OUTPUT direction because the baseEntityGuid  provided (6a488c4a-be00-4bb7-abe0-a6f6f6f60000, which corresponds to the Product table) does not have any outgoing lineage edges—meaning, it does not produce or propagate data to any other entities
+
+**direction=BOTH example is covered in [Dissecting lineage output](#dissecting-lineage-output) section**
 
 ## getDerivedLineage
 
@@ -1598,174 +1524,6 @@ Other than this, this parameter is not used in the code
 Excludes the process type while returning the lineage
 
 ### Example refer [this]() (Todo: In nextLineageAPI doc)
-
-## Dissecting lineage output
-
-### Let's consider the entities we created in above in the [Example of includeParent](#id1) section
-
-<details>
-<summary>
-call getLineageAPI on Product table with direction=BOTH and includeParent=true
-</summary>
-
-```json
-{
-	"baseEntityGuid": "6a488c4a-be00-4bb7-abe0-a6f6f6f60000",
-	"lineageDirection": "BOTH",
-	"lineageDepth": 3,
-	"lineageWidth": 10,
-	"childrenCount": -1,
-	"guidEntityMap": {
-		"cd9cbfcb-6b3d-494c-a2c4-d135c26026f5": {
-			"typeName": "azure_sql_schema",
-			"attributes": {
-				"qualifiedName": "mssql://1118ce87-4322-4241-a0ba-1b76c2685f74.database.windows.net/AdventureWorksLT/SalesLT",
-				"schemaId": 0,
-				"name": "SalesLT"
-			},
-			"lastModifiedTS": "1",
-			"guid": "cd9cbfcb-6b3d-494c-a2c4-d135c26026f5",
-			"status": "ACTIVE",
-			"displayText": "SalesLT",
-			"classificationNames": [],
-			"meaningNames": [],
-			"meanings": [],
-			"isIncomplete": false,
-			"labels": [],
-			"isIndexed": true
-		},
-		"6a488c4a-be00-4bb7-abe0-a6f6f6f60000": {
-			"typeName": "azure_sql_table",
-			"attributes": {
-				"modifiedTime": 0,
-				"createTime": 0,
-				"qualifiedName": "mssql://1118ce87-4322-4241-a0ba-1b76c2685f74.database.windows.net/AdventureWorksLT/SalesLT/Product",
-				"name": "Product",
-				"principalId": 0
-			},
-			"lastModifiedTS": "1",
-			"guid": "6a488c4a-be00-4bb7-abe0-a6f6f6f60000",
-			"status": "ACTIVE",
-			"displayText": "Product",
-			"classificationNames": [],
-			"meaningNames": [],
-			"meanings": [],
-			"isIncomplete": false,
-			"labels": [],
-			"isIndexed": true
-		},
-		"fbd2760a-880c-4bd1-b1aa-5387c80f1b30": {
-			"typeName": "Process",
-			"attributes": {
-				"qualifiedName": "Process_1118ce87-4322-4241-a0ba-1b76c2685f74",
-				"name": "process"
-			},
-			"lastModifiedTS": "1",
-			"guid": "fbd2760a-880c-4bd1-b1aa-5387c80f1b30",
-			"status": "ACTIVE",
-			"displayText": "process",
-			"classificationNames": [],
-			"meaningNames": [],
-			"meanings": [],
-			"isIncomplete": false,
-			"labels": [],
-			"isIndexed": true
-		},
-		"792c4c90-29d0-4540-a72b-a337ae6fa5c8": {
-			"typeName": "rdbms_table",
-			"attributes": {
-				"createTime": 0,
-				"qualifiedName": "rdbms://table-1118ce87-4322-4241-a0ba-1b76c2685f74",
-				"name": "table"
-			},
-			"lastModifiedTS": "1",
-			"guid": "792c4c90-29d0-4540-a72b-a337ae6fa5c8",
-			"status": "ACTIVE",
-			"displayText": "table",
-			"classificationNames": [],
-			"meaningNames": [],
-			"meanings": [],
-			"isIncomplete": false,
-			"labels": [],
-			"isIndexed": true
-		},
-		"a6fe2f6b-90c5-4fb8-9da7-23c7c398416d": {
-			"typeName": "azure_sql_db",
-			"attributes": {
-				"createTime": 0,
-				"qualifiedName": "mssql://1118ce87-4322-4241-a0ba-1b76c2685f74.database.windows.net/AdventureWorksLT",
-				"compatibilityLevel": 0,
-				"name": "AdventureWorksLT"
-			},
-			"lastModifiedTS": "1",
-			"guid": "a6fe2f6b-90c5-4fb8-9da7-23c7c398416d",
-			"status": "ACTIVE",
-			"displayText": "AdventureWorksLT",
-			"classificationNames": [],
-			"meaningNames": [],
-			"meanings": [],
-			"isIncomplete": false,
-			"labels": [],
-			"isIndexed": true
-		}
-	},
-	"includeParent": true,
-	"relations": [
-		{
-			"fromEntityId": "792c4c90-29d0-4540-a72b-a337ae6fa5c8",
-			"toEntityId": "fbd2760a-880c-4bd1-b1aa-5387c80f1b30",
-			"relationshipId": "44489d80-25d1-43b4-9c91-9512c61dd55d"
-		},
-		{
-			"fromEntityId": "fbd2760a-880c-4bd1-b1aa-5387c80f1b30",
-			"toEntityId": "6a488c4a-be00-4bb7-abe0-a6f6f6f60000",
-			"relationshipId": "61ac7129-16e3-4f41-b923-dac92101fcbd"
-		}
-	],
-	"parentRelations": [
-		{
-			"childEntityId": "cd9cbfcb-6b3d-494c-a2c4-d135c26026f5",
-			"parentEntityId": "a6fe2f6b-90c5-4fb8-9da7-23c7c398416d",
-			"relationshipId": "60db6ae3-e24f-4d56-b6af-84693aaaa7bf"
-		},
-		{
-			"childEntityId": "6a488c4a-be00-4bb7-abe0-a6f6f6f60000",
-			"parentEntityId": "cd9cbfcb-6b3d-494c-a2c4-d135c26026f5",
-			"relationshipId": "a12a495c-71c9-4a7f-bf7b-2542076fee10"
-		}
-	],
-	"widthCounts": {
-		"OUTPUT": {
-			"6a488c4a-be00-4bb7-abe0-a6f6f6f60000": 0
-		},
-		"INPUT": {
-			"6a488c4a-be00-4bb7-abe0-a6f6f6f60000": 1,
-			"fbd2760a-880c-4bd1-b1aa-5387c80f1b30": 1,
-			"792c4c90-29d0-4540-a72b-a337ae6fa5c8": 0
-		}
-	}
-}
-```
-
-</details>
-
-1. "relations" array in output contains information of data flow
-   * The first element of array shows data moved from table (rdbms_table) to process
-   * The second element of array shows data moved from process to Product (azure_sql_table)
-2. "parentRelations" array in output contains information of parent child relations b/w entities
-   * This does not represent data flow rather represent how entities involved in lineage are structured
-   * The first element of array shows AdventureWorksLT (azure_sql_db) is parent of SalesLT (azure_sql_schema)
-   * The second element of array shows SalesLT (azure_sql_schema) is parent of Product (azure_sql_table)
-3. WidthCounts INPUT
-   * Represents the number of upstream dependencies (how many entities contribute to a given entity)
-   * Product (azure_sql_table) has 1 input (the process entity)
-   * Process has 1 input (the rdbms_table entity)
-   * rdbms_table has 0 input (it does not depend on any other entity
-4. WidthCounts OUTPUT
-   * Represents the number of downstream dependencies (how many entities are affected by a given entity)
-   * Product (azure_sql_table) has 0 output meaning no other entity depends on it
-5. guidEntityMap
-   * This gives the details of all entities involved in lineage
 
 ## References
 
