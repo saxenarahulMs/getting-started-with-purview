@@ -93,6 +93,12 @@ The lineage query will fetch all parents of a specific DataSet/Process recursive
 The response will contain non-empty parentRelations array if includeParent=true and the entity for which lineage is 
 queried has parent entities
 
+The parent information will be used to display on the UX
+![img.png](images/img_7.png)
+
+In above image the UX is able to display the server, database, schema name in customer table because of parentRelations that it received
+in response when calling lineage API with includeParent=true
+
 ### Examples are covered in [Dissecting lineage output](#dissecting-lineage-output) and [direction](#direction) section
 
 ## Dissecting lineage output
@@ -689,6 +695,11 @@ call getLineageAPI on Product table with direction=BOTH and includeParent=true
 5. guidEntityMap
    * This gives the details of all entities involved in lineage
 
+The Process, Product (azure_sql_table) and rdbms_table entities in UX looks like following
+
+![img.png](images/img_8.png)
+![img_1.png](images/img_9.png)
+![img_2.png](images/img_10.png)
 
 ## direction
 
@@ -845,7 +856,7 @@ API response with direction=INPUT and includeParent=true
 </details>
 
 * Here, "Product" (azure_sql_table) is being derived from another process, which in turn is getting data from rdbms_table.
-* The "INPUT" lineage direction means we are tracing the data backwards looking at what contributes to the final dataset.
+* The "IN[getNextLineage.md](getNextLineage.md)PUT" lineage direction means we are tracing the data backwards looking at what contributes to the final dataset.
 
 <details>
 
@@ -1150,7 +1161,7 @@ Create relationship between main-process and sub-processes using bulk relationsh
 ```
 </details>
 
-<details>
+<details>[getLineageByGuid.md](getLineageByGuid.md)
 <summary>
 Create lineage relationships b/w SourceTableDerived1, SubCopyProcess1, TargetTableDerived1 and SourceTableDerived2,
 SubCopyProcess2, TargetTableDerived2 using relationship API, Call relationship API for each element (json) in array
@@ -1517,13 +1528,7 @@ Other than this, this parameter is not used in the code
 
 ## excludeProcessTypes
 
-| Type           | default value |
-|----------------|---------------|
-| List<String>   | null          |
-
-Excludes the process type while returning the lineage
-
-### Example refer [this]() (Todo: In nextLineageAPI doc)
+Refer [getNextLineage doc excludeProcessTypes section](./getNextLineage#excludeProcessTypes)
 
 ## References
 
