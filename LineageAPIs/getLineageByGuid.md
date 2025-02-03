@@ -972,7 +972,7 @@ True to include derived lineage in the response(Valid lineage entity type for de
 
 <details>
 <summary>
-Create test_sub_process and test_main_process types with composition relation b/w them using typeDef APIs
+Create test_sub_process and test_main_process types with composition relation b/w them using create typeDef API
 </summary>
 
 ```json
@@ -1534,4 +1534,4 @@ Refer [getNextLineage doc excludeProcessTypes section](./getNextLineage#excludeP
 
 1. [BulkEntityCreateOrUpdateAPI](https://learn.microsoft.com/en-us/rest/api/purview/datamapdataplane/entity/bulk-create-or-update?view=rest-purview-datamapdataplane-2023-09-01&tabs=HTTP)
 2. [RelationshipCreteAPI](https://learn.microsoft.com/en-us/rest/api/purview/datamapdataplane/relationship/create?view=rest-purview-datamapdataplane-2023-09-01&tabs=HTTP)
-
+3. [CreateTypeDefAPI](https://learn.microsoft.com/en-us/rest/api/purview/datamapdataplane/type/get-by-name?view=rest-purview-datamapdataplane-2023-09-01&tabs=HTTP)
