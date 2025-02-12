@@ -33,9 +33,9 @@ Refers to how far the lineage query traverses in the graph. It determines how ma
 
 ## width
 
-| Type | default value |
-|------|---------------|
-| int  | 10            |
+| Type | default value | maxWidthSupported |
+|------|---------------|-------------------|
+| int  | 10            |      1024         |
 
 Refers to how many entities are connected at each level. It determines the breadth of the graph at a specific depth
 
