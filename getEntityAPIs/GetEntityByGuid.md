@@ -776,11 +776,14 @@ Note: Since we generate referred entity "2cdea108-b556-4b9e-9399-a195a4d1b647" o
 ## includeTermsInMinExtInfo
 This is provided by Microsoft, and it's not present in Atlas
 
+Controls whether to include terms in relationship attributes of referred entities or not
+The terms are always present in relationship attributes of main entity irrespective of this query param
+
 | Type    | default value |
 |---------|---------------|
 | boolean | false         |
 
-When we use minExtInfo=true, we won't return any terms in relationshipAttributes of entity and referred entities. If you want to include terms in response set includeTermsInMinExtInfo to true
+When we use minExtInfo=true, we won't return any terms in relationshipAttributes of referred entities. If you want to include terms in response set includeTermsInMinExtInfo to true
 
 Note: This query param is only applicable when minExtInfo=true else it is of no use
 
